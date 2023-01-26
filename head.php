@@ -14,7 +14,7 @@ session_unset();}
 $_SESSION["name"] = 'Admin';
 $_SESSION["key"] ='prasanth123';
 $_SESSION["email"] = $email;
-header("location:course.php?q=0");
+header("location:headdash.php?q=0");
 }
 else header("location:$ref?w=Warning : Access denied");
 ?>
