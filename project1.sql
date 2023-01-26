@@ -82,6 +82,21 @@
   ('5bd1a29b7d4b8', '5bd1a29b8ae6e');
 
   -- --------------------------------------------------------
+  
+  --
+  -- Table structure for table `course`
+  --
+  
+  CREATE TABLE `courses` (
+    `id` text NOT NULL,
+    `course` varchar(50) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  
+  INSERT INTO `courses` (`id`, `course`) VALUES
+  ('1','BTECH'),
+  ('2','MCA'),
+  ('3','BCA'),
+  ('4','MTECH');
 
   --
   -- Table structure for table `feedback`
@@ -110,7 +125,8 @@
     `level` int(11) NOT NULL,
     `sahi` int(11) NOT NULL,
     `wrong` int(11) NOT NULL,
-    `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `course` varchar(50) NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
   -- --------------------------------------------------------
@@ -264,21 +280,22 @@
     `intro` text NOT NULL,
     `tag` varchar(100) NOT NULL,
     `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `email` varchar(50) DEFAULT NULL
+    `email` varchar(50) DEFAULT NULL,
+    `course` varchar(50) NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
   --
   -- Dumping data for table `quiz`
   --
 
-  INSERT INTO `quiz` (`eid`, `title`, `sahi`, `wrong`, `total`, `time`, `intro`, `tag`, `date`, `email`) VALUES
-  ('558920ff906b8', 'Linux : File Managment', 2, 1, 2, 5, '', 'linux', '2018-10-20 14:47:56', 'teacher2@gmail.com'),
-  ('558921841f1ec', 'Php Coding', 2, 1, 2, 5, '', 'PHP', '2018-10-20 14:47:04', 'teacher1@gmail.com'),
-  ('5589222f16b93', 'C++ Coding', 2, 1, 2, 5, '', 'c++', '2018-10-20 14:47:04', 'teacher1@gmail.com'),
-  ('558922ec03021', 'Networking', 2, 1, 2, 5, '', 'networking', '2018-10-20 14:47:04', 'teacher1@gmail.com'),
-  ('55897338a6659', 'Linux:startup', 2, 1, 5, 10, '', 'linux', '2018-10-20 14:47:56', 'teacher2@gmail.com'),
-  ('5589741f9ed52', 'Linux :vi Editor', 2, 1, 5, 10, '', 'linux', '2018-10-20 14:47:56', 'teacher2@gmail.com'),
-  ('5bd1a1a3c5e5b', 'Data Structure', 1, 0, 2, 1, 'ds exam', 'ds', '2018-10-25 10:57:39', 'teacher2@gmail.com');
+  INSERT INTO `quiz` (`eid`, `title`, `sahi`, `wrong`, `total`, `time`, `intro`, `tag`, `date`, `email`,`course`) VALUES
+  ('558920ff906b8', 'Linux : File Managment', 2, 1, 2, 5, '', 'linux', '2018-10-20 14:47:56', 'teacher2@gmail.com','BTECH'),
+  ('558921841f1ec', 'Php Coding', 2, 1, 2, 5, '', 'PHP', '2018-10-20 14:47:04', 'teacher1@gmail.com','BTECH'),
+  ('5589222f16b93', 'C++ Coding', 2, 1, 2, 5, '', 'c++', '2018-10-20 14:47:04', 'teacher1@gmail.com','MCA'),
+  ('558922ec03021', 'Networking', 2, 1, 2, 5, '', 'networking', '2018-10-20 14:47:04', 'teacher1@gmail.com','MCA'),
+  ('55897338a6659', 'Linux:startup', 2, 1, 5, 10, '', 'linux', '2018-10-20 14:47:56', 'teacher2@gmail.com','BCA'),
+  ('5589741f9ed52', 'Linux :vi Editor', 2, 1, 5, 10, '', 'linux', '2018-10-20 14:47:56', 'teacher2@gmail.com','BCA'),
+  ('5bd1a1a3c5e5b', 'Data Structure', 1, 0, 2, 1, 'ds exam', 'ds', '2018-10-25 10:57:39', 'teacher2@gmail.com','BTECH');
 
   -- --------------------------------------------------------
 
@@ -323,142 +340,7 @@
   ALTER TABLE `user`
     ADD PRIMARY KEY (`email`);
   COMMIT;
-
-  CREATE PROCEDURE AddAdmin(IN email VARCHAR(50), IN password VARCHAR(500), IN role VARCHAR(10))
-BEGIN
-    INSERT INTO admin (email, password, role)
-    VALUES (email, password, role);
-END;
-
-CREATE PROCEDURE GetAdminByEmail(IN email VARCHAR(50))
-BEGIN
-    SELECT * FROM admin WHERE email = email;
-END;
-
-CREATE PROCEDURE GetHistoryByEmail(IN email VARCHAR(50))
-BEGIN
-    SELECT * FROM history WHERE email = email;
-END;
-
-CREATE PROCEDURE GetUserByEmail(IN email VARCHAR(50))
-BEGIN
-    SELECT * FROM user WHERE email = email;
-END;
-
-CREATE PROCEDURE UpdateUserScore(IN email VARCHAR(50), IN score INT)
-BEGIN
-    UPDATE history SET score = score WHERE email = email;
-END;
-
-CREATE PROCEDURE AddAnswer(IN qid TEXT, IN ansid TEXT)
-BEGIN
-    INSERT INTO answer (qid, ansid)
-    VALUES (qid, ansid);
-END;
-
-CREATE PROCEDURE GetAnswerByQid(IN qid TEXT)
-BEGIN
-    SELECT * FROM answer WHERE qid = qid;
-END;
-
-CREATE PROCEDURE AddFeedback(IN id TEXT, IN name VARCHAR(50), IN email VARCHAR(50), IN subject VARCHAR(500), IN feedback VARCHAR(500), IN date DATE, IN time VARCHAR(50))
-BEGIN
-    INSERT INTO feedback (id, name, email, subject, feedback, date, time)
-    VALUES (id, name, email, subject, feedback, date, time);
-END;
-
-CREATE PROCEDURE GetFeedbackById(IN id TEXT)
-BEGIN
-    SELECT * FROM feedback WHERE id = id;
-END;
-
-CREATE PROCEDURE AddOption(IN qid VARCHAR(50), IN option VARCHAR(5000), IN optionid TEXT)
-BEGIN
-    INSERT INTO options (qid, option, optionid)
-    VALUES (qid, option, optionid);
-END;
-
-CREATE PROCEDURE GetOptionByQid(IN qid VARCHAR(50))
-BEGIN
-    SELECT * FROM options WHERE qid = qid;
-END;
-
-CREATE PROCEDURE GetAllQuizzes()
-BEGIN
-    SELECT * FROM quiz;
-END;
-
-CREATE PROCEDURE GetQuizQuestionsAndOptions(IN eid VARCHAR(50))
-BEGIN
-    SELECT qns, choice, option FROM questions
-    JOIN options ON questions.qid = options.qid
-    WHERE eid = eid;
-END;
-
-CREATE PROCEDURE UpdateQuizTitle(IN eid VARCHAR(50), IN title VARCHAR(100))
-BEGIN
-    UPDATE quiz SET title = title WHERE eid = eid;
-END;
-
-CREATE PROCEDURE DeleteUser(IN email VARCHAR(50))
-BEGIN
-    DELETE FROM user WHERE email = email;
-END;
-
-CREATE PROCEDURE AddFeedback(IN id VARCHAR(50), IN name VARCHAR(50), IN email VARCHAR(50), IN subject VARCHAR(500), IN feedback VARCHAR(500), IN date DATE, IN time VARCHAR(50))
-BEGIN
-    INSERT INTO feedback (id, name, email, subject, feedback, date, time)
-    VALUES (id, name, email, subject, feedback, date, time);
-END;
-
-CREATE PROCEDURE GetTopScores()
-BEGIN
-    SELECT email, score FROM rank ORDER BY score DESC LIMIT 10;
-END;
-
-CREATE PROCEDURE GetAnswersByQuestion(IN qid VARCHAR(50))
-BEGIN
-    SELECT ansid FROM answer WHERE qid = qid;
-END;
-
-CREATE PROCEDURE UpdateFeedbackSubject(IN id VARCHAR(50), IN subject VARCHAR(500))
-BEGIN
-    UPDATE feedback SET subject = subject WHERE id = id;
-END;
-
-/*trigger*/
-
-CREATE TRIGGER tr_feedback_date_time
-BEFORE INSERT ON feedback
-FOR EACH ROW
-BEGIN
-    SET NEW.date = CURRENT_DATE;
-    SET NEW.time = CURRENT_TIME;
-END;
-
-CREATE TABLE feedback_archive (
-  LIKE feedback
-);
-
-CREATE TRIGGER tr_feedback_archive
-AFTER DELETE ON feedback
-FOR EACH ROW
-BEGIN
-    INSERT INTO feedback_archive
-    SELECT * FROM feedback
-    WHERE id = OLD.id;
-END;
-
-
-
-
-
-
-
-
-
-
-
+  
   /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
   /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
   /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

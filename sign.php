@@ -17,7 +17,7 @@ session_start();
 $_SESSION["email"] = $email;
 $_SESSION["name"] = $name;
 
-header("location:account.php?q=1");
+header("location:course.php?q=1");
 }
 else
 {

@@ -17,7 +17,7 @@ while($row = mysqli_fetch_array($result)) {
 }
 $_SESSION["name"] = $name;
 $_SESSION["email"] = $email;
-header("location:account.php?q=1");
+header("location:course.php?q=1");
 }
 else
 header("location:$ref?w=Wrong Username or Password");
