@@ -66,7 +66,7 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar left">
-        <li <?php if(@$_GET['q']==1) echo'class="active"'; ?> ><a href="course.php?q=1"><span class="glyphicon glyphicon-home"></span>&nbsp;Courses<span class="sr-only">(current)</span></a></li>
+        <li <?php if(@$_GET['q']==1) echo'class="active"'; ?> ><a href="course.php?q=1"><span class="glyphicon glyphicon-list"></span>&nbsp;Courses<span class="sr-only">(current)</span></a></li>
         
     
   </ul>
@@ -88,7 +88,14 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
 
 $result = mysqli_query($con,"SELECT * FROM courses") or die('Error');
 echo  '<div class="panel"><table class="table table-striped title1">
-<tr style="color:black"><td><b>S.N.</b></td><td><b>Course</b></td></tr>';
+<tr style="color:black">
+<td><b>S.N.</b></td>
+<td><b>Course</b></td>
+<td><b></b></td>
+
+
+
+</tr>';
 $c=1;
 while($row = mysqli_fetch_array($result)) {
   $course = $row['course'];

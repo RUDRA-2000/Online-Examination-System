@@ -591,10 +591,10 @@ var b = document.forms["form"]["cpassword"].value;if (a!=b){alert("Passwords mus
 <!-- Container (About Section) -->
 <div id="about" class="container-fluid">
   <div class="row">
-    <div class="col-sm-8">
+    <div  class="col-sm-8" >
       
-      <h4 align="justify">Online examination System is conducting a test online to measure the knowledge of the participants on a given topic. In the olden days everybody had to gather in a classroom at the same time to take an exam. With online examination students can do the exam online, in their own time and with their own device, regardless where they life. You online need a browser and internet connection. </h4>
-      <h4 align="justify">Online Examination System (OES) is a platform to hold online examinations. It caters to many requirements of holding online examinations. The system can generate statistical data for records. The system makes it possible to maintain a repository of questions, and then generate papers at a later stage, such that the lecturer has more flexibility over holding online quizzes. Furthermore, it provides the functionality to mark the papers automatically.</h4> 
+      <h4 style="margin: 10px 10px 30px 50px"; align="justify">Online examination System is conducting a test online to measure the knowledge of the participants on a given topic. In the olden days everybody had to gather in a classroom at the same time to take an exam. With online examination students can do the exam online, in their own time and with their own device, regardless where they life. You online need a browser and internet connection. </h4>
+      <h4 style="margin: 10px 10px 30px 50px"; align="justify">Online Examination System (OES) is a platform to hold online examinations. It caters to many requirements of holding online examinations. The system can generate statistical data for records. The system makes it possible to maintain a repository of questions, and then generate papers at a later stage, such that the lecturer has more flexibility over holding online quizzes. Furthermore, it provides the functionality to mark the papers automatically.</h4> 
       <br><!--<button class="btn btn-default btn-lg">Get in Touch</button>-->
     </div>
     <div class="col-sm-4">
@@ -651,18 +651,12 @@ var b = document.forms["form"]["cpassword"].value;if (a!=b){alert("Passwords mus
   <h2 class="text-center">FEEDBACK</h2>
   <div class="row">
     <div class="col-sm-5">
-      <p>Contact us and we'll get back to you within 24 hours.</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span> Karnataka, INDIA</p>
-      <p><span class="glyphicon glyphicon-phone"></span> +91 8986194093, +91 8904773790 </p>
-      <p><span class="glyphicon glyphicon-envelope"></span> humBaiteHai@gmail.com</p>
+      <h3  style="margin: 00px 10px 30px 50px";><b>CONTACT US </b> <h3>
+      <h5 style="margin: 10px 10px 30px 25px";><span class="glyphicon glyphicon-map-marker"></span> Karnataka, INDIA</h5>
+      <h5 style="margin: 10px 10px 30px 25px"; ><span class="glyphicon glyphicon-phone"></span> +91 8986194093, +91 8904773790 </h5>
+      <h5 style="margin: 10px 10px 30px 25px";><span class="glyphicon glyphicon-envelope"></span> humBaiteHai@gmail.com</h5>
     </div>
     <div class="col-sm-7 slideanim">
-
-
-
-
-
-
 
       <?php if(@$_GET['q'])echo '<span style="font-size:18px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;'.@$_GET['q'].'</span>';
 else
@@ -680,14 +674,14 @@ else
         <div class="col-sm-6 form-group">
           <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
         </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="subject" placeholder="subject" type="text" required>
+        <div class="col-sm-12 form-group">
+          <input class="form-control" id="email" name="subject" placeholder="Subject" type="text" required>
         </div>
       </div>
       <textarea class="form-control" id="comments" name="feedback" placeholder="Feedback" rows="4"></textarea><br>
       <div class="row">
         <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" name="submit" input type="submit">send</button>
+          <button class="btn btn-default pull-right" name="submit" input type="submit">Submit</button>
         </div>
       </form>';}?>
       </div>
@@ -717,7 +711,7 @@ Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <p>Thank you for visiting us.</p>
+  <h4>Thank you for visiting us.</h4>
 </footer>
 
 <script>
